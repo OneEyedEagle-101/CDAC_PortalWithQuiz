@@ -27,6 +27,7 @@ import Profile from "./Profile";
 import Notice from "./Notice";
 import { Avatar } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
+import RecordingsList from "./RecordingsList";
 import Webcam from "react-webcam";
 import { useEffect, useState } from "react";
 import ProfileCard from "./ProfileCard";
@@ -257,48 +258,12 @@ function DashboardContent() {
                   <NoticeBoard />
                 ) : location.pathname === "/Student/StudyMaterial" ? (
                   <StudentStudyMaterial />
+                ) : location.pathname == "/Student/viewRecordings" ? (
+                  <RecordingsList />
                 ) : (
                   navigate("/")
                 )}
               </Grid>
-              {/* <div className="px-4 pt-4" style={{ display: "flex" }}>
-                <Grid
-                  item
-                  align="center"
-                  position="absolute"
-                  variant="permanent"
-                >
-                  <Paper
-                    sx={{
-                      p: 8,
-                      display: "flex",
-                      flexDirection: "column",
-                      height: 350,
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ marginTop: "5px", color: "blueviolet" }}>
-                      Name : {user.name}
-                    </div>
-                    <h6>Date : {date}</h6>
-                    <h6>Time : {time}</h6>
-                  </Paper>
-                </Grid>
-              </div> */}
-              {/* Recent Deposits
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid> */}
-              {/* Recent Orders */}
             </Grid>
           </Container>
         </Box>

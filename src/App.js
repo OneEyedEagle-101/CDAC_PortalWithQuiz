@@ -6,7 +6,10 @@ import FacultyDashboard from "./Components/Faculty/FacultyDashboard";
 import AdminDashboard from "./Components/Admin/AdminDashboard";
 import ForgotPassword from "./Components/ForgotPassword";
 import Register from "./Components/Register";
-import QuizList, { NoticeB } from "./Components/Student/QuizList";
+import QuizList, {
+  NoticeB,
+  RecordingsView,
+} from "./Components/Student/QuizList";
 import {
   Quiz,
   Profileinfo,
@@ -36,6 +39,7 @@ function App() {
       <Route element={<SendRecording />} path="/Faculty/UploadRecording" />
       <Route element={<NoticeB />} path="/Student/Notice" />
       <Route element={<StudyMaterial />} path="/Student/StudyMaterial" />
+      <Route element={<RecordingsView />} path="/Student/viewRecordings" />
     </Routes>
   );
 }

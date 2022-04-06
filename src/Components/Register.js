@@ -5,6 +5,8 @@ import {
   TextField,
   Button,
   Typography,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { useEffect, useState } from "react";
@@ -139,84 +141,118 @@ export default function Register() {
   }
 
   return (
-    <Grid style={{ marginTop: "80px" }}>
-      <Paper elevation={10} style={paperStyle}>
-        <Grid align="center">
-          <Avatar style={{ backgroundColor: "#1bbd7e" }}>
-            <PersonAddAlt1Icon />
-          </Avatar>
-          <h3 style={{ color: "#1bbd7e" }}> Sign Up </h3>
-        </Grid>
-        <DropdownButton
-          id="dropdown-variants-Info"
-          title="Role"
-          onSelect={roleHandler}
+    <>
+      <AppBar position="fixed">
+        <Toolbar
+          sx={{
+            bgcolor: "#1976D2",
+            color: "white",
+            pr: "24px", // keep right padding when drawer closed
+          }}
         >
-          <Dropdown.Item eventKey="faculty">Faculty</Dropdown.Item>
-          <Dropdown.Item eventKey="student">Student</Dropdown.Item>
-        </DropdownButton>
-        <TextField
-          id="name"
-          label="Name"
-          type="text"
-          onChange={usernameHandler}
-          style={{ marginBottom: "10px", marginTop: "30px" }}
-          autoComplete="off"
-          fullWidth
-        />
-        <Toaster position="top-center" reverseOrder={false} />
-        {nameErr ? <span style={fontStyle}>Invalid Name</span> : null}
+          <img
+            src="https://ci4.googleusercontent.com/proxy/mta1h-3IY-hDdJj9bN6Xxr94NMwPShHjLGCpVtITeh4FONiEryzXYSNYP_LzrMwHQ3_cb2nMIgqmiU5CP19fa1Sy2j0KZMxl0M0waLHaKN98tADGF1qfHtzGANmMCpK0XTl3WFf0yhABxLFC4cg4CeU=s0-d-e1-ft#https://i.ibb.co/Z6qL3Qk/130835957-4769194336484775-8630394154285450578-n-removebg-preview.png"
+            alt="Kitten"
+            height="65"
+            width="45"
+          />
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            CDAC Portal
+          </Typography>
 
-        <TextField
-          id="surname"
-          label="Surname"
-          type="text"
-          onChange={surnameHandler}
-          style={{ marginBottom: "10px" }}
-          autoComplete="off"
-          fullWidth
-        />
-        {surErr ? <span style={fontStyle}>Invalid Surname</span> : null}
+          {/* <Avatar
+              
+              
+            /> */}
+        </Toolbar>
+      </AppBar>
 
-        <TextField
-          id="email"
-          label="Email"
-          type="email"
-          onChange={useremailHandler}
-          fullWidth
-          style={{ marginBottom: "10px" }}
-          autoComplete="off"
-        />
+      <Grid style={{ marginTop: "100px" }}>
+        <Paper elevation={10} style={paperStyle}>
+          <Grid align="center">
+            <Avatar style={{ backgroundColor: "#1bbd7e" }}>
+              <PersonAddAlt1Icon />
+            </Avatar>
+            <h3 style={{ color: "#1bbd7e" }}> Sign Up </h3>
+          </Grid>
+          <DropdownButton
+            className="text-dark"
+            id="dropdown-variants-Info"
+            title="Role"
+            onSelect={roleHandler}
+          >
+            <Dropdown.Item eventKey="faculty">Faculty</Dropdown.Item>
+            <Dropdown.Item eventKey="student">Student</Dropdown.Item>
+          </DropdownButton>
+          <TextField
+            id="name"
+            label="Name"
+            type="text"
+            onChange={usernameHandler}
+            style={{ marginBottom: "10px", marginTop: "30px" }}
+            autoComplete="off"
+            fullWidth
+          />
+          <Toaster position="top-center" reverseOrder={false} />
+          {nameErr ? <span style={fontStyle}>Invalid Name</span> : null}
 
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          onChange={passwordHandler}
-          fullWidth
-          style={{ marginBottom: "15px" }}
-          autoComplete="off"
-        />
-        {passErr ? (
-          <span style={fontStyle}>Password should between 8 to 15 char</span>
-        ) : null}
+          <TextField
+            id="surname"
+            label="Surname"
+            type="text"
+            onChange={surnameHandler}
+            style={{ marginBottom: "10px" }}
+            autoComplete="off"
+            fullWidth
+          />
+          {surErr ? <span style={fontStyle}>Invalid Surname</span> : null}
 
-        <Button
-          variant="contained"
-          onClick={register}
-          fullWidth
-          style={{ marginBottom: "10px" }}
-        >
-          Register
-        </Button>
+          <TextField
+            id="email"
+            label="Email"
+            type="email"
+            onChange={useremailHandler}
+            fullWidth
+            style={{ marginBottom: "10px" }}
+            autoComplete="off"
+          />
 
-        <Typography style={{ marginTop: "10px" }}>
-          Already have an account?
-          <Link to="/">
-            <b className="text-info"> Sign in</b>
-          </Link>
-        </Typography>
-      </Paper>
-    </Grid>
+          <TextField
+            id="password"
+            label="Password"
+            type="password"
+            onChange={passwordHandler}
+            fullWidth
+            style={{ marginBottom: "15px" }}
+            autoComplete="off"
+          />
+          {passErr ? (
+            <span style={fontStyle}>Password should between 8 to 15 char</span>
+          ) : null}
+
+          <Button
+            variant="contained"
+            onClick={register}
+            fullWidth
+            style={{ marginBottom: "10px" }}
+          >
+            Register
+          </Button>
+
+          <Typography style={{ marginTop: "10px" }}>
+            Already have an account?
+            <Link to="/">
+              <b className="text-info"> Sign in</b>
+            </Link>
+          </Typography>
+        </Paper>
+      </Grid>
+    </>
   );
 }

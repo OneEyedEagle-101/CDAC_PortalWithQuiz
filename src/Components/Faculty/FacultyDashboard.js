@@ -32,6 +32,7 @@ import FacultyRecordingUpload from "./FacultyRecordingUploadTest";
 import axios from "axios";
 import FacultyRecording from "./FacultyRecordingUpload";
 import { Title } from "@mui/icons-material";
+import RecordingsUpload from "./RecordingsUpload";
 
 const drawerWidth = 240;
 
@@ -87,7 +88,14 @@ function DashboardContent() {
     month: "short",
     day: "numeric",
   });
-
+  const color1 = "#0066ff";
+  const color2 = "#ff99cc";
+  const color3 = "#33cc33";
+  const color4 = "#333399";
+  const color5 = "#ff0066";
+  const color6 = "#9933ff";
+  const color7 = "#ff0000";
+  const color8 = "#ff66cc";
   let [countRecording, setCountRecording] = React.useState(0);
   let [countNote, setCountNote] = React.useState(0);
   let [countNotice, setCountNotice] = React.useState(0);
@@ -217,24 +225,34 @@ function DashboardContent() {
               <Grid>
                 {location.pathname == "/Faculty" ? (
                   <>
-                    <div className="display-5 pb-2 text-dark">
+                    <div className="display-5 pb-2 fw-bold text-dark">
                       Your Activity
                     </div>
 
                     <Grid container spacing={3}>
                       {/* Chart */}
+
                       <Grid item xs={12} md={4} lg={3}>
                         <Paper
                           sx={{
                             p: 2,
+                            borderRadius: "10px",
                             display: "flex",
                             flexDirection: "column",
                             height: 240,
                           }}
+                          style={{
+                            background: `linear-gradient(to bottom left,   ${color1} 0%,${color2} 100%)`,
+                          }}
                         >
-                          <div className="display-6 fw-bold text-center">
+                          <div
+                            className="display-6 fw-bold text-center"
+                            style={{ color: "white" }}
+                          >
                             <div>Quizzes Uploaded</div>
-                            <div>{countQuiz}</div>
+                            <div className="pt-4 display-5 fw-bold">
+                              {countQuiz}
+                            </div>
                           </div>
                         </Paper>
                       </Grid>
@@ -243,14 +261,23 @@ function DashboardContent() {
                         <Paper
                           sx={{
                             p: 2,
+                            borderRadius: "10px",
                             display: "flex",
                             flexDirection: "column",
                             height: 240,
                           }}
+                          style={{
+                            background: `linear-gradient(to bottom left,  ${color3} 0%,${color4} 100%)`,
+                          }}
                         >
-                          <div className="display-6 fw-bold text-center">
+                          <div
+                            className="display-6 fw-bold text-center"
+                            style={{ color: "white" }}
+                          >
                             <div>Recordings Uploaded</div>
-                            <div>{countRecording}</div>
+                            <div className="pt-4 display-5 fw-bold">
+                              {countRecording}
+                            </div>
                           </div>
                         </Paper>
                       </Grid>
@@ -259,14 +286,23 @@ function DashboardContent() {
                         <Paper
                           sx={{
                             p: 2,
+                            borderRadius: "10px",
                             display: "flex",
                             flexDirection: "column",
                             height: 240,
                           }}
+                          style={{
+                            background: `linear-gradient(to bottom left,  ${color5} 0%,${color6} 100%)`,
+                          }}
                         >
-                          <div className="display-6 fw-bold text-center">
+                          <div
+                            className="display-6 fw-bold text-center"
+                            style={{ color: "white" }}
+                          >
                             <div>Notes Uploaded</div>
-                            <div>{countNotice}</div>
+                            <div className="pt-4 display-5 fw-bold">
+                              {countNotice}
+                            </div>
                           </div>
                         </Paper>
                       </Grid>
@@ -277,14 +313,23 @@ function DashboardContent() {
                         <Paper
                           sx={{
                             p: 2,
+                            borderRadius: "10px",
                             display: "flex",
                             flexDirection: "column",
                             height: 240,
                           }}
+                          style={{
+                            background: `linear-gradient(to bottom left,  ${color7} 0%,${color8} 100%)`,
+                          }}
                         >
-                          <div className="display-6 fw-bold text-center">
-                            <div>Notice Posted</div>
-                            <div>{countNote}</div>
+                          <div
+                            className="display-6 fw-bold text-center"
+                            style={{ color: "white" }}
+                          >
+                            <div>Notices Published</div>
+                            <div className="pt-4 display-5 fw-bold">
+                              {countNote}
+                            </div>
                           </div>
                         </Paper>
                       </Grid>
@@ -306,7 +351,7 @@ function DashboardContent() {
                   <Notice />
                 ) : location.pathname == "/Faculty/UploadRecording" ? (
                   <div>
-                    <FacultyRecording />
+                    <RecordingsUpload />
                   </div>
                 ) : (
                   navigate("/Faculty")

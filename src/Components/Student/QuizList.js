@@ -23,3 +23,6 @@ export function NoticeB() {
 export function StudyMaterial() {
   return <StudentDashboard />;
 }
+export function RecordingsView() {
+  return <StudentDashboard />;
+}

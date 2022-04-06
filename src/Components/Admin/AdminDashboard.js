@@ -1,35 +1,275 @@
-import { Button } from "@mui/material";
-import React, { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Router, useNavigate } from "react-router-dom";
+import * as React from "react";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiDrawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { Link, Navigate, useLocation } from "react-router-dom";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { mainListItems, secondaryListItems } from "./listItems";
+import Chart from "./Chart";
+
+import Orders from "./Orders";
+import ChartTwo from "./ChartTwo";
+import ChartFour from "./ChartFour";
+import ChartThree from "./ChartThree";
+import { FacultyList, StudentList } from "./Admin";
+
+const drawerWidth = 240;
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  "& .MuiDrawer-paper": {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    boxSizing: "border-box",
+    ...(!open && {
+      overflowX: "hidden",
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(7),
+      [theme.breakpoints.up("sm")]: {
+        width: theme.spacing(9),
+      },
+    }),
+  },
+}));
+
+const mdTheme = createTheme();
+
+function DashboardContent() {
+  let location = useLocation();
+  console.log(location.pathname);
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar position="absolute" open={open}>
+          <Toolbar
+            sx={{
+              pr: "4px", // keep right padding when drawer closed
+            }}
+          >
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: "36px",
+                ...(open && { display: "none" }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <img
+              src="https://ci4.googleusercontent.com/proxy/mta1h-3IY-hDdJj9bN6Xxr94NMwPShHjLGCpVtITeh4FONiEryzXYSNYP_LzrMwHQ3_cb2nMIgqmiU5CP19fa1Sy2j0KZMxl0M0waLHaKN98tADGF1qfHtzGANmMCpK0XTl3WFf0yhABxLFC4cg4CeU=s0-d-e1-ft#https://i.ibb.co/Z6qL3Qk/130835957-4769194336484775-8630394154285450578-n-removebg-preview.png"
+              alt="Kitten"
+              height="65"
+              width="45"
+            />
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 5 }}
+            >
+              Admin Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">
+            {mainListItems}
+            <Divider sx={{ my: 1 }} />
+            {secondaryListItems}
+          </List>
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+              {/* Chart */}
+              {location.pathname == "/Admin" ? (
+                <>
+                  <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                      }}
+                    >
+                      <Chart />
+                    </Paper>
+                  </Grid>
+
+                  {/* Chart 2*/}
+                  <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                      }}
+                    >
+                      <ChartTwo />
+                    </Paper>
+                  </Grid>
+
+                  {/* Chart 2*/}
+                  <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                      }}
+                    >
+                      <ChartTwo />
+                    </Paper>
+                  </Grid>
+                  {/* Chart 3*/}
+                  <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                      }}
+                    >
+                      <ChartThree />
+                    </Paper>
+                  </Grid>
+
+                  {/* Chart 4*/}
+                  <Grid item xs={12} md={4} lg={3}>
+                    <Paper
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                      }}
+                    >
+                      <ChartFour />
+                    </Paper>
+                  </Grid>
+                </>
+              ) : location.pathname === "/Admin" ? (
+                <AdminDashboard />
+              ) : location.pathname === "/Admin/FacultyList" ? (
+                <>
+                  <FacultyList />
+                </>
+              ) : location.pathname === "/Admin/StudentList" ? (
+                <>
+                  <StudentList />
+                </>
+              ) : (
+                Navigate("/")
+              )}
+
+              {/* Recent Orders */}
+            </Grid>
+            <Copyright sx={{ pt: 4 }} />
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
+
+  function Copyright(props) {
+    return (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        align="center"
+        {...props}
+      >
+        {"Copyright © "}
+        <Link color="inherit" href="https://www.cdac.in/">
+          CDAC Portal
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
+  }
+}
 
 export default function AdminDashboard() {
-  /////Sesion Logic
-  const navigate = useNavigate();
-  let user = sessionStorage.getItem("user");
-  useEffect(() => {
-    console.log(user);
-    if (user === "null" || user === null) {
-      toast.error("Login First!!");
-      navigate("/");
-    }
-  }, []);
-
-  if (user !== "null") {
-    user = JSON.parse(sessionStorage.getItem("user"));
-  }
-  const signOut = () => {
-    sessionStorage.setItem("user", null);
-    localStorage.setItem("user", null);
-    toast.success("Logged out Successfully");
-    navigate("/");
-  };
-  /////////Session Logic
-  return (
-    <>
-      <div>AdminDashboard:- </div>
-      <Button onClick={signOut}>SignOut</Button>
-      <Toaster position="top-center" reverseOrder={false} />
-    </>
-  );
+  return <DashboardContent />;
 }

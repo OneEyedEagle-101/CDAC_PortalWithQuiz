@@ -9,16 +9,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotesIcon from "@mui/icons-material/Notes";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
+import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import { Link } from "react-router-dom";
 import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { Link } from "react-router-dom";
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to="/Faculty">
+    <Link to="/Admin">
       <ListItemButton>
         <ListItemIcon>
           <DashboardIcon />
@@ -26,57 +26,41 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </Link>
-    <Link to="/Faculty/CreateQuiz">
+    <Link to="/Admin/FacultyList">
       <ListItemButton>
         <ListItemIcon>
-          <QuizIcon />
+          <AutoAwesomeMotionIcon />
         </ListItemIcon>
-        <ListItemText primary="Create Quiz" />
+        <ListItemText primary="Faculty Records " />
       </ListItemButton>
     </Link>
-    <Link to="/Faculty/Notice">
+    <Link to="/Admin/StudentList">
       <ListItemButton>
         <ListItemIcon>
           <AccountCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Broadcast Notice" />
+        <ListItemText primary="Students Records" />
       </ListItemButton>
     </Link>
-    <Link to="/Faculty/UploadRecording">
+    <Link to="/Admin/ManageList">
       <ListItemButton>
         <ListItemIcon>
-          <OndemandVideoIcon />
+          <AccountCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Upload Recordings" />
+        <ListItemText primary="Manage Records" />
       </ListItemButton>
     </Link>
-    <Link to="/Faculty/UploadRecording">
-      <ListItemButton>
-        <ListItemIcon>
-          <NotesIcon />
-        </ListItemIcon>
-        <ListItemText primary="Study Material" />
-      </ListItemButton>
-    </Link>
-    <ListItemButton>
+    <ListItemButton
+    // onClick={() => {
+    //   sessionStorage.setItem("user", null);
+    //   localStorage.setItem("user", null);
+    // }}
+    >
       <ListItemIcon>
-        <BarChartIcon />
+        <LogoutIcon />
       </ListItemIcon>
-      <ListItemText primary=" Student Reports" />
+      <ListItemText primary="Logout" />
     </ListItemButton>
-    <Link to="/">
-      <ListItemButton
-        onClick={() => {
-          sessionStorage.setItem("user", null);
-          localStorage.setItem("user", null);
-        }}
-      >
-        <ListItemIcon>
-          <LogoutIcon />
-        </ListItemIcon>
-        <ListItemText primary="Logout" />
-      </ListItemButton>
-    </Link>
   </React.Fragment>
 );
 

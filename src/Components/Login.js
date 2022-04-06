@@ -1,9 +1,12 @@
 import {
+  AppBar,
   Box,
   Button,
   Checkbox,
   FormControlLabel,
+  IconButton,
   TextField,
+  Toolbar,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -100,9 +103,41 @@ export default function Login() {
 
   return (
     <>
+      <AppBar position="fixed">
+        <Toolbar
+          sx={{
+            bgcolor: "#1976D2",
+            color: "white",
+            pr: "24px", // keep right padding when drawer closed
+          }}
+        >
+          <img
+            src="https://ci4.googleusercontent.com/proxy/mta1h-3IY-hDdJj9bN6Xxr94NMwPShHjLGCpVtITeh4FONiEryzXYSNYP_LzrMwHQ3_cb2nMIgqmiU5CP19fa1Sy2j0KZMxl0M0waLHaKN98tADGF1qfHtzGANmMCpK0XTl3WFf0yhABxLFC4cg4CeU=s0-d-e1-ft#https://i.ibb.co/Z6qL3Qk/130835957-4769194336484775-8630394154285450578-n-removebg-preview.png"
+            alt="Kitten"
+            height="65"
+            width="45"
+          />
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            CDAC Portal
+          </Typography>
+
+          {/* <Avatar
+              
+              
+            /> */}
+        </Toolbar>
+      </AppBar>
+
       <Container>
+        <div className="pt-4"></div>
         <div className="pt-5"></div>
-        <Grid className="pt-4">
+        <Grid className="pt-5">
           <Paper className="pt-5" elevation={10} style={paperStyle}>
             <Grid align="center">
               <Avatar style={{ backgroundColor: "#1bbd7e" }}>

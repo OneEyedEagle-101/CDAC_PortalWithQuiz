@@ -64,6 +64,8 @@ export const mainListItems = (
         </ListItemIcon>
         <ListItemText primary="Study Material" />
       </ListItemButton>
+      </Link>
+      <Link to="/Student/viewRecordings">
       <ListItemButton>
         <ListItemIcon>
           <EmergencyRecordingIcon />
